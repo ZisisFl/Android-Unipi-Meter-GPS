@@ -27,6 +27,7 @@ public class SettingsActivity extends AppCompatActivity {
 
         preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 
+        // check for blank fields
         save_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -42,6 +43,7 @@ public class SettingsActivity extends AppCompatActivity {
                 {
                     Toast.makeText(getApplicationContext(),"Blank search radius field",Toast.LENGTH_SHORT).show();
                 }
+                // save new settings if conditions are met
                 else{
                     SharedPreferences.Editor editor = preferences.edit();
                     editor.putString("SPEED_LIMITER", speed_lim.getText().toString());
@@ -51,6 +53,7 @@ public class SettingsActivity extends AppCompatActivity {
                 }
             }
         });
+        // setText of textfield with the latest settings
         SharedPreferences.Editor editor = preferences.edit();
         speed_lim.setText(preferences.getString("SPEED_LIMITER", "30"));
         search_rad.setText(preferences.getString("SEARCH_RADIUS", "3000"));
