@@ -11,14 +11,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String DATABASE_NAME = "unipi_meter.db";
 
     public DatabaseHelper(Context context) {
-        super(context, DATABASE_NAME, null, 2);
+        super(context, DATABASE_NAME, null, 4);
         SQLiteDatabase db = this.getWritableDatabase();
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("CREATE TABLE IF NOT EXISTS POIs(pois_title VARCHAR,description VARCHAR, category VARCHAR, coordinates VARCHAR);");
-        db.execSQL("CREATE TABLE IF NOT EXISTS SpeedAlerts(timestamp VARCHAR,speed VARCHAR, location VARCHAR);");
+        db.execSQL("CREATE TABLE IF NOT EXISTS SpeedAlerts(timestamp VARCHAR,speed FLOAT, location VARCHAR);");
         db.execSQL("CREATE TABLE IF NOT EXISTS POI_in_rad(timestamp VARCHAR,poi_title VARCHAR, location VARCHAR);");
     }
 
@@ -59,7 +59,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     // save in db a speeding alert
-    public boolean write_speed_alert(String timestamp, String speed, String location){
+    public boolean write_speed_alert(String timestamp, float speed, String location){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put("timestamp", timestamp);

@@ -28,18 +28,30 @@ public class StatisticsActivity extends AppCompatActivity {
 
         //1
         Cursor q1 = unipi_meter_db.n_pois();
-        q1.moveToFirst();
-        n_pois.setText(q1.getString(0));
+        if (q1.getCount() != 0){
+            q1.moveToFirst();
+            n_pois.setText(q1.getString(0));
+        }
+        else
+            n_pois.setText("No data yet");
 
         //2
         Cursor q2 = unipi_meter_db.n_categories();
-        q2.moveToFirst();
-        n_categories.setText(q2.getString(0));
+        if (q2.getCount() != 0) {
+            q2.moveToFirst();
+            n_categories.setText(q2.getString(0));
+        }
+        else
+            n_categories.setText("No data yet");
 
         //3
         Cursor q3 = unipi_meter_db.get_highest_speed();
-        q3.moveToFirst();
-        max_speed.setText(q3.getString(0));
+        if (q3.getCount() != 0) {
+            q3.moveToFirst();
+            max_speed.setText(q3.getString(0));
+        }
+        else
+            max_speed.setText("No data yet");
 
         //4
         String speeding_counter = String.valueOf(unipi_meter_db.count_speeding());
@@ -47,12 +59,21 @@ public class StatisticsActivity extends AppCompatActivity {
 
         //5
         Cursor q5 = unipi_meter_db.most_visited();
-        q5.moveToFirst();
-        most_visited.setText(q5.getString(0));
+        if (q5.getCount() != 0) {
+            q5.moveToFirst();
+            most_visited.setText(q5.getString(0));
+        }
+        else
+            most_visited.setText("No data yet");
+
 
         //6
         Cursor q6 = unipi_meter_db.category_most_pois();
-        q6.moveToFirst();
-        category_most.setText(q6.getString(0));
+        if (q6.getCount() != 0) {
+            q6.moveToFirst();
+            category_most.setText(q6.getString(0));
+        }
+        else
+            category_most.setText("No data yet");
     }
 }

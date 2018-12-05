@@ -120,7 +120,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 
         if (c_speed > speed_limit)
         {
-            boolean isInserted = unipi_meter_db.write_speed_alert(timestamp, Float.toString(c_speed),
+            boolean isInserted = unipi_meter_db.write_speed_alert(timestamp, c_speed,
                     latitude+", "+longitude);
             if(isInserted = true)
                     Toast.makeText(MainActivity.this, "Speed Alert Added", Toast.LENGTH_SHORT).show();
